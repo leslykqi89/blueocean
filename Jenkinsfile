@@ -8,5 +8,13 @@ pipeline {
 '''
       }
     }
+    stage('Upload to AWS') {
+      steps {
+        withAWS(credentials: 'MyCredentials', region: 'us-east-1') {
+          s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, bucket: 'jenkins-ex3-udacity', file: 'index.html')
+        }
+
+      }
+    }
   }
 }
