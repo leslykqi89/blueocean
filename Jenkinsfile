@@ -1,13 +1,11 @@
 pipeline {
   agent any
   stages {
-    stage('Build') {
+    stage('Lint HTML') {
       agent any
       steps {
-        sh '''echo "Hello World"
+        sh '''tidy -q -e *.html
 '''
-        sh '''echo "Multiline shell steps works too"
-ls -lah'''
       }
     }
   }
